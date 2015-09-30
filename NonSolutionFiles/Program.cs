@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace NonSolutionFiles
 {
@@ -16,10 +17,13 @@ namespace NonSolutionFiles
 				var solutionPath = args[0];
 				var fileReader = new FileReader();
 				var findNonSolutionFiles = new FindNonSolutionFiles(new FilesOnDisk(), new FilesInProject(fileReader), new ProjectsInSolution(fileReader));
-				foreach (var deadFile in findNonSolutionFiles.Find(solutionPath))
+				var deadFiles = findNonSolutionFiles.Find(solutionPath);
+        foreach (var deadFile in deadFiles)
 				{
 					Console.WriteLine(deadFile);
 				}
+				Console.WriteLine();
+				Console.WriteLine($"Found {deadFiles.Count()} dead files!");
 			}
 		}
 	}
