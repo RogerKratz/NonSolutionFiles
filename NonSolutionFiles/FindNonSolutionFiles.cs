@@ -18,7 +18,7 @@ namespace NonSolutionFiles
 			_projectsInSolution = projectsInSolution;
 		}
 
-		public IEnumerable<string> Find(string solutionPath)
+		public IEnumerable<string> Find(string solutionPath, IEnumerable<string> excludeFilesContaing)
 		{
 			var allFilesOnDiskInProjectFolders = new List<string>();
 			var allFilesInProjects = new List<string>();
@@ -27,7 +27,12 @@ namespace NonSolutionFiles
 				allFilesInProjects.AddRange(_filesInProject.FilePaths(projectPath));
 				allFilesOnDiskInProjectFolders.AddRange(_filesOnDisk.ProjectFilesInSamePathAsProjectFileRecursive(projectPath));
 			}
-			return allFilesOnDiskInProjectFolders.Except(allFilesInProjects);
+			var matchesBeforeExcludes =  allFilesOnDiskInProjectFolders.Except(allFilesInProjects);
+			return matchesBeforeExcludes.Where(x =>
+			{
+				return excludeFilesContaing.All(excludeString => !x.Contains(excludeString));
+			});
+			
 		}
 	}
 }
