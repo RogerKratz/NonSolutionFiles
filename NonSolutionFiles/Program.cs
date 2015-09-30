@@ -18,7 +18,7 @@ namespace NonSolutionFiles
 				var exludeFilesContaining = args.Skip(1);
 				var fileReader = new FileReader();
 				var findNonSolutionFiles = new FindNonSolutionFiles(new FilesOnDisk(), new FilesInProject(fileReader), new ProjectsInSolution(fileReader));
-				var deadFiles = findNonSolutionFiles.Find(solutionPath, exludeFilesContaining);
+				var deadFiles = findNonSolutionFiles.Find(solutionPath, exludeFilesContaining).ToArray();
         foreach (var deadFile in deadFiles)
 				{
 					Console.WriteLine(deadFile);
