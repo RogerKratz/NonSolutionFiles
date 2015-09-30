@@ -18,7 +18,7 @@ namespace NonSolutionFilesTest.UnitTests
 				File.WriteAllText(tempFilePath, text);
 				
 				var target = new FilesOnDisk();
-				target.CSharpFilesInSamePathAsProjectFileRecursive(tempFilePath)
+				target.ProjectFilesInSamePathAsProjectFileRecursive(tempFilePath)
 					.Should().Contain(tempFilePath);
 			}
 			finally
@@ -39,7 +39,7 @@ namespace NonSolutionFilesTest.UnitTests
 				File.WriteAllText(tempFilePath, text);
 
 				var target = new FilesOnDisk();
-				target.CSharpFilesInSamePathAsProjectFileRecursive(tempFilePath)
+				target.ProjectFilesInSamePathAsProjectFileRecursive(tempFilePath)
 					.Should().Contain(tempFilePath);
 			}
 			finally
@@ -50,17 +50,17 @@ namespace NonSolutionFilesTest.UnitTests
 		}
 
 		[Test]
-		public void ShouldNotFindNonDotCsFile()
+		public void ShouldFindNonDotCsFile()
 		{
-			var tempFilePath = Path.Combine(Path.GetTempPath(), RandomString.Make() + "cs");
+			var tempFilePath = Path.Combine(Path.GetTempPath(), RandomString.Make() + ".somethingelse");
 			var text = RandomString.Make();
 			try
 			{
 				File.WriteAllText(tempFilePath, text);
 
 				var target = new FilesOnDisk();
-				target.CSharpFilesInSamePathAsProjectFileRecursive(tempFilePath)
-					.Should().Not.Contain(tempFilePath);
+				target.ProjectFilesInSamePathAsProjectFileRecursive(tempFilePath)
+					.Should().Contain(tempFilePath);
 			}
 			finally
 			{
@@ -80,7 +80,7 @@ namespace NonSolutionFilesTest.UnitTests
 				File.WriteAllText(tempFilePath, text);
 
 				var target = new FilesOnDisk();
-				target.CSharpFilesInSamePathAsProjectFileRecursive(tempFilePath)
+				target.ProjectFilesInSamePathAsProjectFileRecursive(tempFilePath)
 					.Should().Not.Contain(tempFilePath);
 			}
 			finally
@@ -102,7 +102,7 @@ namespace NonSolutionFilesTest.UnitTests
 				File.WriteAllText(tempFilePath, text);
 
 				var target = new FilesOnDisk();
-				target.CSharpFilesInSamePathAsProjectFileRecursive(tempFilePath)
+				target.ProjectFilesInSamePathAsProjectFileRecursive(tempFilePath)
 					.Should().Not.Contain(tempFilePath);
 			}
 			finally
@@ -124,7 +124,7 @@ namespace NonSolutionFilesTest.UnitTests
 				File.WriteAllText(tempFilePath, text);
 
 				var target = new FilesOnDisk();
-				target.CSharpFilesInSamePathAsProjectFileRecursive(tempFilePath)
+				target.ProjectFilesInSamePathAsProjectFileRecursive(tempFilePath)
 					.Should().Not.Contain(tempFilePath);
 			}
 			finally
@@ -146,7 +146,7 @@ namespace NonSolutionFilesTest.UnitTests
 				File.WriteAllText(tempFilePath, text);
 
 				var target = new FilesOnDisk();
-				target.CSharpFilesInSamePathAsProjectFileRecursive(tempFilePath)
+				target.ProjectFilesInSamePathAsProjectFileRecursive(tempFilePath)
 					.Should().Not.Contain(tempFilePath);
 			}
 			finally

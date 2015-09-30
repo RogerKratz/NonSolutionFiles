@@ -4,6 +4,6 @@ namespace NonSolutionFiles
 {
 	public interface IFilesOnDisk
 	{
-		IEnumerable<string> CSharpFilesInSamePathAsProjectFileRecursive(string path);
+		IEnumerable<string> ProjectFilesInSamePathAsProjectFileRecursive(string path);
 	}
 }

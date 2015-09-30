@@ -25,7 +25,7 @@ namespace NonSolutionFiles
 			foreach (var projectPath in _projectsInSolution.ProjectPaths(solutionPath))
 			{
 				allFilesInProjects.AddRange(_filesInProject.FilePaths(projectPath));
-				allFilesOnDiskInProjectFolders.AddRange(_filesOnDisk.CSharpFilesInSamePathAsProjectFileRecursive(projectPath));
+				allFilesOnDiskInProjectFolders.AddRange(_filesOnDisk.ProjectFilesInSamePathAsProjectFileRecursive(projectPath));
 			}
 			return allFilesOnDiskInProjectFolders.Except(allFilesInProjects);
 		}

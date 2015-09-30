@@ -28,12 +28,12 @@ namespace NonSolutionFilesTest.UnitTests
 		}
 
 		[Test]
-		public void ShouldNotFindFilePathOnWrongElement()
+		public void ShouldFindFilePathOnAnyElement()
 		{
 			const string doc = @"
 <Project xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
   <ItemGroup>	
-		<Compile2 Include=""THIS.cs"" />
+		<SomethingStrange Include=""THIS.txt"" />
 	</ItemGroup>
 </Project>
 ";
@@ -42,7 +42,7 @@ namespace NonSolutionFilesTest.UnitTests
 			var fileContent = new FileReaderStub(doc.Split(Environment.NewLine.ToCharArray()));
 			var target = new FilesInProject(fileContent);
 			target.FilePaths(path)
-				.Should().Be.Empty();
+				.Should().Have.SameValuesAs(Path.Combine(folder, @"THIS.txt"));
 		}
 
 		[Test]
@@ -90,6 +90,27 @@ namespace NonSolutionFilesTest.UnitTests
   <ItemGroup>	
 		<Compile Include=""THIS.cs"" />
 		<Compile Include=""that/THIS2.cs"" />
+	</ItemGroup>
+</Project>
+";
+			var folder = "c:\\" + RandomString.Make();
+			var path = folder + "\\someproj.csproj";
+			var fileContent = new FileReaderStub(doc.Split(Environment.NewLine.ToCharArray()));
+			var target = new FilesInProject(fileContent);
+			target.FilePaths(path)
+				.Should().Have.SameValuesAs(Path.Combine(folder, "THIS.cs"), Path.Combine(folder, "that/THIS2.cs"));
+		}
+
+		[Test]
+		public void ShouldFindMixOfMultipleProjectPaths()
+		{
+			const string doc = @"
+<Project xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
+  <ItemGroup>	
+		<Compile Include=""THIS.cs"" />
+	</ItemGroup>
+ <ItemGroup>	
+		<Content Include=""that/THIS2.cs"" />
 	</ItemGroup>
 </Project>
 ";

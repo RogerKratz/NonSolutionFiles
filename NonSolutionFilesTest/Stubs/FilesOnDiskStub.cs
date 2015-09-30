@@ -12,7 +12,7 @@ namespace NonSolutionFilesTest.Stubs
 			_filesOnDisk = filesOnDisk;
 		}
 
-		public IEnumerable<string> CSharpFilesInSamePathAsProjectFileRecursive(string path)
+		public IEnumerable<string> ProjectFilesInSamePathAsProjectFileRecursive(string path)
 		{
 			return _filesOnDisk;
 		}
