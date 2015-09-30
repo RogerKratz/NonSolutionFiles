@@ -1,8 +1,8 @@
 # NonSolutionFiles
 Finds c# files removed from csproj file but still on disk.
 
-Usage:
+Usage:</br>
 NonSolutionFiles.exe [absolute path to your c# solution file] [excludeFileContaingString1] [excludeFileContainingString2] [...]
 
-Example
+Example:</br>
 NonSolutionFiles.exe c:\stuff\mysolution.sln \aFolderWithGeneratedFiles\
