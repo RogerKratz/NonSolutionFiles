@@ -10,7 +10,6 @@ namespace NonSolutionFiles
 			{
 				Console.WriteLine("Usage:");
 				Console.WriteLine("NonSolutionFiles.exe [absolute path to your c# solution file]");
-				Console.ReadKey();
 			}
 			else
 			{
@@ -21,7 +20,6 @@ namespace NonSolutionFiles
 				{
 					Console.WriteLine(deadFile);
 				}
-				Console.ReadKey();
 			}
 		}
 	}
