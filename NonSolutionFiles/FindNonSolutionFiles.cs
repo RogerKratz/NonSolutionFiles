@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NonSolutionFiles
@@ -27,12 +29,16 @@ namespace NonSolutionFiles
 				allFilesInProjects.AddRange(_filesInProject.FilePaths(projectPath));
 				allFilesOnDiskInProjectFolders.AddRange(_filesOnDisk.ProjectFilesInSamePathAsProjectFileRecursive(projectPath));
 			}
-			var matchesBeforeExcludes =  allFilesOnDiskInProjectFolders.Except(allFilesInProjects);
-			return matchesBeforeExcludes.Where(x =>
+			var matchesBeforeExcludes = allFilesOnDiskInProjectFolders.Except(allFilesInProjects, StringComparer.OrdinalIgnoreCase);
+
+			var ret = new List<string>();
+			foreach (var matchBeforeExcludes in matchesBeforeExcludes)
 			{
-				return excludeFilesContaing.All(excludeString => !x.Contains(excludeString));
-			});
-			
+				var excluded = excludeFilesContaing.Any(excludeFileContaining => matchBeforeExcludes.ToUpper().Contains(excludeFileContaining.ToUpper()));
+				if (!excluded)
+					ret.Add(matchBeforeExcludes);
+			}
+			return ret;
 		}
 	}
 }
