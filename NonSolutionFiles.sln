@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonSolutionFiles", "NonSolu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonSolutionFilesTest", "NonSolutionFilesTest\NonSolutionFilesTest.csproj", "{6A62BBE3-0E1D-47EE-9CC7-1D1CA803B852}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindDeadFiles", "FindDeadFiles\FindDeadFiles.csproj", "{22692CAC-8088-488D-A05C-539B8A486B5E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{6A62BBE3-0E1D-47EE-9CC7-1D1CA803B852}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A62BBE3-0E1D-47EE-9CC7-1D1CA803B852}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A62BBE3-0E1D-47EE-9CC7-1D1CA803B852}.Release|Any CPU.Build.0 = Release|Any CPU
-		{22692CAC-8088-488D-A05C-539B8A486B5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22692CAC-8088-488D-A05C-539B8A486B5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22692CAC-8088-488D-A05C-539B8A486B5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22692CAC-8088-488D-A05C-539B8A486B5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
