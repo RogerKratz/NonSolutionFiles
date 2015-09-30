@@ -155,5 +155,43 @@ namespace NonSolutionFilesTest.UnitTests
 				Directory.Delete(folder);
 			}
 		}
+
+		[Test]
+		public void ShouldNotFindCsProjFiles()
+		{
+			var tempFilePath = Path.Combine(Path.GetTempPath(), RandomString.Make() + ".csproj");
+			var text = RandomString.Make();
+			try
+			{
+				File.WriteAllText(tempFilePath, text);
+
+				var target = new FilesOnDisk();
+				target.ProjectFilesInSamePathAsProjectFileRecursive(tempFilePath)
+					.Should().Not.Contain(tempFilePath);
+			}
+			finally
+			{
+				File.Delete(tempFilePath);
+			}
+		}
+
+		[Test]
+		public void ShouldNotFindSolutionFiles()
+		{
+			var tempFilePath = Path.Combine(Path.GetTempPath(), RandomString.Make() + ".sln");
+			var text = RandomString.Make();
+			try
+			{
+				File.WriteAllText(tempFilePath, text);
+
+				var target = new FilesOnDisk();
+				target.ProjectFilesInSamePathAsProjectFileRecursive(tempFilePath)
+					.Should().Not.Contain(tempFilePath);
+			}
+			finally
+			{
+				File.Delete(tempFilePath);
+			}
+		}
 	}
 }
