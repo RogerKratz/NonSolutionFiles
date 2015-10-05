@@ -12,10 +12,10 @@ namespace NonSolutionFiles
 			var allCSharpFiles = Directory.GetFiles(folder, "*.*", SearchOption.AllDirectories);
 			return allCSharpFiles
 				.Where(file => 
-					!file.Contains(@"\obj\") && 
-					!file.Contains(@"\bin\") && 
-					!file.EndsWith(".sln") &&
-					!file.EndsWith(".csproj"));
+					!file.ToLower().Contains(@"\obj\") && 
+					!file.ToLower().Contains(@"\bin\") && 
+					!file.ToLower().EndsWith(".sln") &&
+					!file.ToLower().EndsWith(".csproj"));
 		}
 	}
 }

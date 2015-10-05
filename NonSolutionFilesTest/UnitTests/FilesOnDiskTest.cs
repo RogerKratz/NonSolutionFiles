@@ -157,6 +157,28 @@ namespace NonSolutionFilesTest.UnitTests
 		}
 
 		[Test]
+		public void ShouldNotFindFileInBinCaseingSubFolder()
+		{
+			var folder = Path.Combine(Path.GetTempPath(), "BiN", RandomString.Make());
+			var tempFilePath = Path.Combine(folder, RandomString.Make() + ".cs");
+			var text = RandomString.Make();
+			try
+			{
+				Directory.CreateDirectory(folder);
+				File.WriteAllText(tempFilePath, text);
+
+				var target = new FilesOnDisk();
+				target.ProjectFilesInSamePathAsProjectFileRecursive(tempFilePath)
+					.Should().Not.Contain(tempFilePath);
+			}
+			finally
+			{
+				File.Delete(tempFilePath);
+				Directory.Delete(folder);
+			}
+		}
+
+		[Test]
 		public void ShouldNotFindCsProjFiles()
 		{
 			var tempFilePath = Path.Combine(Path.GetTempPath(), RandomString.Make() + ".csproj");
