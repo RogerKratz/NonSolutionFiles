@@ -15,7 +15,8 @@ namespace NonSolutionFiles
 					!file.ToLower().Contains(@"\obj\") && 
 					!file.ToLower().Contains(@"\bin\") && 
 					!file.ToLower().EndsWith(".sln") &&
-					!file.ToLower().EndsWith(".csproj"));
+					!file.ToLower().EndsWith(".csproj") &&
+					!file.ToLower().EndsWith(".user"));
 		}
 	}
 }

@@ -179,6 +179,25 @@ namespace NonSolutionFilesTest.UnitTests
 		}
 
 		[Test]
+		public void ShouldNotFindUserFiles()
+		{
+			var tempFilePath = Path.Combine(Path.GetTempPath(), RandomString.Make() + ".user");
+			var text = RandomString.Make();
+			try
+			{
+				File.WriteAllText(tempFilePath, text);
+
+				var target = new FilesOnDisk();
+				target.ProjectFilesInSamePathAsProjectFileRecursive(tempFilePath)
+					.Should().Not.Contain(tempFilePath);
+			}
+			finally
+			{
+				File.Delete(tempFilePath);
+			}
+		}
+
+		[Test]
 		public void ShouldNotFindCsProjFiles()
 		{
 			var tempFilePath = Path.Combine(Path.GetTempPath(), RandomString.Make() + ".csproj");
