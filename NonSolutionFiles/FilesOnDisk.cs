@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -8,6 +9,9 @@ namespace NonSolutionFiles
 	{
 		public IEnumerable<string> ProjectFilesInSamePathAsProjectFileRecursive(string projectFilePath)
 		{
+			if (!File.Exists(projectFilePath))
+				throw new ArgumentException($"Project file {projectFilePath} cannot be found.");
+
 			var folder = Path.GetDirectoryName(projectFilePath);
 			var allCSharpFiles = Directory.GetFiles(folder, "*.*", SearchOption.AllDirectories);
 			return allCSharpFiles
