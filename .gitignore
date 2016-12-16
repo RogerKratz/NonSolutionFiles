@@ -26,3 +26,4 @@ obj/
 _ReSharper*/
 packages/
 Build/output
+*.DotSettings
