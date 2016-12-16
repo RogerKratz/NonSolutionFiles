@@ -5,7 +5,7 @@ namespace NonSolutionFilesTest.Stubs
 	public static class RandomString
 	{
 		private static readonly Random random = new Random();
-		const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		private const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 		public static string Make()
 		{
